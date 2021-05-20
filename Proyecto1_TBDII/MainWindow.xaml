@@ -1,0 +1,15 @@
+﻿<Window x:Class="Proyecto1_TBDII.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Proyecto1_TBDII"
+        mc:Ignorable="d"
+        Title="Menu" Height="355" Width="270">
+    <Grid Margin="0,0,0,5">
+        <Label Content="Proyecto 1 TBDII" HorizontalAlignment="Center" Margin="0,65,0,0" VerticalAlignment="Top" FontWeight="Bold" FontSize="20"/>
+        <Button x:Name="btAdmin" Content="Admin app" HorizontalAlignment="Center" Margin="0,167,0,0" VerticalAlignment="Top" Width="70"/>
+        <Button x:Name="btAlumno" Content="Alumno app" HorizontalAlignment="Center" Margin="0,224,0,0" VerticalAlignment="Top" Click="btAlumno_Click"/>
+
+    </Grid>
+</Window>
