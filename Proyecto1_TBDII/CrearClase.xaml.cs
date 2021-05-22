@@ -14,35 +14,27 @@ using StackExchange.Redis;
 namespace Proyecto1_TBDII
 {
     /// <summary>
-    /// Interaction logic for AdminWindow.xaml
+    /// Interaction logic for CrearClase.xaml
     /// </summary>
-    public partial class AdminWindow : Window
+    public partial class CrearClase : Window
     {
         DBA dba = new DBA("127.0.0.1:6379,password=1");
-        int noClases = -1;
         IDatabase conn;
-        public AdminWindow()
+        int noClases = -1;
+        public CrearClase(int x)
         {
+            noClases = x;
+            tbId.Text = Convert.ToString(noClases + 1);
             InitializeComponent();
-            setNoClases();
         }
 
-        public void setNoClases()
+        private void btCrear_Click(object sender, RoutedEventArgs e)
         {
-            int i = 0;
             conn = dba.getConn();
-            while (conn.KeyExists("Clase:Clase"+i))
-            {
-                i++;
-            }
-            noClases = i;
-        }
-
-        private void btCrearClase_Click(object sender, RoutedEventArgs e)
-        {
-            setNoClases();
-            CrearClase cc = new CrearClase(noClases);
-            cc.Show();
+            int id = Convert.ToInt32(tbId.Text);
+            string nombre = tbNombre.Text;
+            conn.HashSet("Clase:Clase"+id, new HashEntry[] { new HashEntry("id",id), new HashEntry("nombre",nombre)});
+            this.Close();
         }
     }
 }

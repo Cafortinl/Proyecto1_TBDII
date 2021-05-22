@@ -30,5 +30,11 @@ namespace Proyecto1_TBDII
             Login l = new Login();
             l.Show();
         }
+
+        private void btAdmin_Click(object sender, RoutedEventArgs e)
+        {
+            AdminWindow aw = new AdminWindow();
+            aw.Show();
+        }
     }
 }

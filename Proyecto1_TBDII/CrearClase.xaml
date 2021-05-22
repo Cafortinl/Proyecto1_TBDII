@@ -1,0 +1,17 @@
+﻿<Window x:Class="Proyecto1_TBDII.CrearClase"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Proyecto1_TBDII"
+        mc:Ignorable="d"
+        Title="Crear Clase" Height="225" Width="214">
+    <Grid>
+        <Label Content="ID" HorizontalAlignment="Left" Margin="47,20,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="tbId" HorizontalAlignment="Center" Margin="0,51,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" IsEnabled="False"/>
+        <Label Content="Nombre" HorizontalAlignment="Left" Margin="47,89,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="tbNombre" HorizontalAlignment="Center" Margin="0,120,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <Button x:Name="btCrear" Content="Crear clase" HorizontalAlignment="Center" Margin="0,166,0,0" VerticalAlignment="Top" Click="btCrear_Click"/>
+
+    </Grid>
+</Window>
