@@ -5,8 +5,23 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Proyecto1_TBDII"
         mc:Ignorable="d"
-        Title="AlumnoWindow" Height="450" Width="800">
+        Title="Alumno" Height="450" Width="628">
     <Grid>
-        
+        <Label x:Name="lbNombre" Content="Bienvenido, nombre_alumno" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
+        <Label Content="Exámenes realizados" HorizontalAlignment="Left" Margin="10,56,0,0" VerticalAlignment="Top"/>
+        <DataGrid x:Name="dgRealizados" Margin="10,87,375,10" RenderTransformOrigin="0.5,0.5">
+            <DataGrid.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform AngleY="0"/>
+                    <RotateTransform/>
+                    <TranslateTransform Y="0"/>
+                </TransformGroup>
+            </DataGrid.RenderTransform>
+        </DataGrid>
+        <Label Content="Exámenes por hacer" HorizontalAlignment="Left" Margin="314,56,0,0" VerticalAlignment="Top"/>
+        <DataGrid x:Name="dgPorRealizar" Margin="314,82,10,49"/>
+        <Button x:Name="btHacerExamen" Content="Hacer exámen" HorizontalAlignment="Left" Margin="426,404,0,0" VerticalAlignment="Top"/>
+
     </Grid>
 </Window>
