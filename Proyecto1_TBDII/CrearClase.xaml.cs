@@ -21,20 +21,24 @@ namespace Proyecto1_TBDII
         DBA dba = new DBA("127.0.0.1:6379,password=1");
         IDatabase conn;
         int noClases = -1;
-        public CrearClase(int x)
+        AdminWindow aw;
+        public CrearClase(int x, AdminWindow a)
         {
+            aw = a;
             noClases = x;
-            tbId.Text = Convert.ToString(noClases + 1);
             InitializeComponent();
+            tbId.Text = Convert.ToString(noClases + 1);
         }
 
         private void btCrear_Click(object sender, RoutedEventArgs e)
         {
             conn = dba.getConn();
             int id = Convert.ToInt32(tbId.Text);
+            tbId.IsReadOnly = true;
             string nombre = tbNombre.Text;
             conn.HashSet("Clase:Clase"+id, new HashEntry[] { new HashEntry("id",id), new HashEntry("nombre",nombre)});
             this.Close();
+            aw.updateTable();
         }
     }
 }

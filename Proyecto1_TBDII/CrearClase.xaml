@@ -8,7 +8,7 @@
         Title="Crear Clase" Height="225" Width="214">
     <Grid>
         <Label Content="ID" HorizontalAlignment="Left" Margin="47,20,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="tbId" HorizontalAlignment="Center" Margin="0,51,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" IsEnabled="False"/>
+        <TextBox x:Name="tbId" HorizontalAlignment="Center" Margin="0,51,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
         <Label Content="Nombre" HorizontalAlignment="Left" Margin="47,89,0,0" VerticalAlignment="Top"/>
         <TextBox x:Name="tbNombre" HorizontalAlignment="Center" Margin="0,120,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
         <Button x:Name="btCrear" Content="Crear clase" HorizontalAlignment="Center" Margin="0,166,0,0" VerticalAlignment="Top" Click="btCrear_Click"/>
