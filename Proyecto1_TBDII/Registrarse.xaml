@@ -15,6 +15,6 @@
         <Label Content="Nombre" HorizontalAlignment="Left" Margin="73,95,0,0" VerticalAlignment="Top"/>
         <Label Content="Usuario" HorizontalAlignment="Left" Margin="73,153,0,0" VerticalAlignment="Top"/>
         <Label Content="Password" HorizontalAlignment="Left" Margin="73,212,0,0" VerticalAlignment="Top"/>
-        <Button x:Name="btRegistrarse" Content="Registrarse" HorizontalAlignment="Center" Margin="0,321,0,0" VerticalAlignment="Top"/>
+        <Button x:Name="btRegistrarse" Content="Registrarse" HorizontalAlignment="Center" Margin="0,321,0,0" VerticalAlignment="Top" Click="btRegistrarse_Click"/>
     </Grid>
 </Window>

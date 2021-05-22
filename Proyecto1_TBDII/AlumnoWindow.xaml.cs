@@ -17,8 +17,10 @@ namespace Proyecto1_TBDII
     /// </summary>
     public partial class AlumnoWindow : Window
     {
-        public AlumnoWindow()
+        int id = -1;
+        public AlumnoWindow(int x)
         {
+            id = x;
             InitializeComponent();
         }
     }

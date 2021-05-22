@@ -38,7 +38,9 @@ namespace Proyecto1_TBDII
                     if(pass == conn.HashGet("Login:" + user, "password"))
                     {
                         id = Convert.ToInt32(conn.HashGet("Login:" + user, "idAlumno"));
-                        MessageBox.Show(Convert.ToString(id));
+                        AlumnoWindow aw = new AlumnoWindow(id);
+                        aw.Show();
+                        this.Close();
                     }
                     else
                     {
@@ -56,6 +58,12 @@ namespace Proyecto1_TBDII
             }
             tbUsuario.Text = "";
             pbPassword.Password = "";
+        }
+
+        private void btRegistrarse_Click(object sender, RoutedEventArgs e)
+        {
+            Registrarse r = new Registrarse();
+            r.Show();
         }
     }
 }
