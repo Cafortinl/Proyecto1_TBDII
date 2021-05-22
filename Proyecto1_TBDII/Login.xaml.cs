@@ -26,19 +26,36 @@ namespace Proyecto1_TBDII
 
         private void btLogin_Click(object sender, RoutedEventArgs e)
         {
-            int id = -1;
+            int id;
             string user, pass;
             user = tbUsuario.Text;
             pass = pbPassword.Password;
             IDatabase conn = dba.getConn();
-            var hash = conn.HashGetAll("Login:"+user);
-            string data="";
-            for(int i = 0;i < 3;i++)
+            if(conn.KeyExists("Login:" + user))//validando que el usuario existe
             {
-                if (i == 3)
-                    id = Convert.ToInt32(hash[i].Value);
+                if(user != "Admin")
+                {
+                    if(pass == conn.HashGet("Login:" + user, "password"))
+                    {
+                        id = Convert.ToInt32(conn.HashGet("Login:" + user, "idAlumno"));
+                        MessageBox.Show(Convert.ToString(id));
+                    }
+                    else
+                    {
+                        MessageBox.Show("Usuario o contraseña incorrectos.");
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("No está autorizado a usar este usuario.");
+                }
             }
-            MessageBox.Show(Convert.ToString(id));
+            else
+            {
+                MessageBox.Show("El usuario ingresado no existe.");
+            }
+            tbUsuario.Text = "";
+            pbPassword.Password = "";
         }
     }
 }
