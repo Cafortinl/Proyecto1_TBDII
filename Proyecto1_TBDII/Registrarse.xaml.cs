@@ -48,11 +48,13 @@ namespace Proyecto1_TBDII
                 else
                 {
                     MessageBox.Show("El usuario ingresado no es válido.");
+                    tbUsuario.Text = "";
                 }
             }
             else
             {
                 MessageBox.Show("El id ingresado no es válido.");
+                tbId.Text = "";
             }
         }
     }
