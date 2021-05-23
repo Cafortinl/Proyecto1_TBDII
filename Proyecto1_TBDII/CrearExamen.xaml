@@ -5,8 +5,15 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Proyecto1_TBDII"
         mc:Ignorable="d"
-        Title="CrearExamen" Height="337" Width="234">
+        Title="Crear Examen" Height="299" Width="194">
     <Grid>
+        <Label Content="ID" HorizontalAlignment="Left" Margin="37,27,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="tbId" HorizontalAlignment="Center" Margin="0,53,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" IsEnabled="False"/>
+        <Label Content="ID Clase" HorizontalAlignment="Left" Margin="37,76,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="tbClase" HorizontalAlignment="Center" Margin="0,107,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" IsEnabled="False"/>
+        <Label Content="No. preguntas" HorizontalAlignment="Left" Margin="37,130,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="tbPreguntas" HorizontalAlignment="Center" Margin="0,161,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <Button x:Name="btCrearExamen" Content="Crear exámen" HorizontalAlignment="Center" Margin="0,220,0,0" VerticalAlignment="Top" Click="btCrearExamen_Click"/>
 
     </Grid>
 </Window>

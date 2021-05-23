@@ -9,6 +9,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using StackExchange.Redis;
 
 namespace Proyecto1_TBDII
 {
@@ -17,9 +18,37 @@ namespace Proyecto1_TBDII
     /// </summary>
     public partial class CrearExamen : Window
     {
-        public CrearExamen()
+        DBA dba = new DBA("127.0.0.1:6379,password=1");
+        int id = -1, idClase = -1, noPreguntas = -1;
+        AdminWindow aw;
+        IDatabase conn;
+
+        private void btCrearExamen_Click(object sender, RoutedEventArgs e)
         {
+            conn = dba.getConn();
+            int preg = Convert.ToInt32(tbPreguntas.Text);
+            if(preg > noPreguntas)
+            {
+                MessageBox.Show("El examen no puede tener más preguntas que las que tiene la clase.");
+                tbPreguntas.Text = "";
+            }
+            else
+            {
+                conn.HashSet("Examen:ExamenC"+idClase, new HashEntry[] { new HashEntry("id", id), new HashEntry("idClase", idClase), new HashEntry("noPreguntas", preg)});
+                aw.updateTable();
+                this.Close();
+            }
+        }
+
+        public CrearExamen(int i, int c, int p, AdminWindow a)
+        {
+            id = i + 1;
+            idClase = c;
+            noPreguntas = p;
+            aw = a;
             InitializeComponent();
+            tbId.Text = Convert.ToString(id);
+            tbClase.Text = Convert.ToString(idClase);
         }
     }
 }

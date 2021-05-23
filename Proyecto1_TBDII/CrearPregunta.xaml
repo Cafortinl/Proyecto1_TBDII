@@ -5,8 +5,19 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Proyecto1_TBDII"
         mc:Ignorable="d"
-        Title="CrearPregunta" Height="450" Width="800">
+        Title="Crear Pregunta" Height="391" Width="224">
     <Grid>
-        
+        <Label Content="ID" HorizontalAlignment="Left" Margin="48,32,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="tbId" HorizontalAlignment="Left" Margin="48,63,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" IsEnabled="False"/>
+        <Label Content="Titulo" HorizontalAlignment="Left" Margin="48,86,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="tbTitulo" HorizontalAlignment="Left" Margin="48,117,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <Label Content="Descripción" HorizontalAlignment="Left" Margin="48,140,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="tbDesc" HorizontalAlignment="Left" Margin="48,171,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <Label Content="ID Clase" HorizontalAlignment="Left" Margin="48,194,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="tbClase" HorizontalAlignment="Left" Margin="48,225,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" IsEnabled="False"/>
+        <Label Content="Respuesta" HorizontalAlignment="Left" Margin="48,248,0,0" VerticalAlignment="Top"/>
+        <CheckBox x:Name="cbRespuesta" Content="Verdadera" HorizontalAlignment="Left" Margin="48,279,0,0" VerticalAlignment="Top"/>
+        <Button x:Name="btCrearPregunta" Content="Crear pregunta" HorizontalAlignment="Center" Margin="0,333,0,0" VerticalAlignment="Top" Click="btCrearPregunta_Click"/>
+
     </Grid>
 </Window>

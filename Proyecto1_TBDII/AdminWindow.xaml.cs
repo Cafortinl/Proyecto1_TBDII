@@ -19,7 +19,7 @@ namespace Proyecto1_TBDII
     public partial class AdminWindow : Window
     {
         DBA dba = new DBA("127.0.0.1:6379,password=1");
-        int noClases = 0, noPreguntas = 0;
+        int noClases = 0, noPreguntas = 0, noExamenes = 0, totPreguntas = 0;
         IDatabase conn;
         public AdminWindow()
         {
@@ -55,6 +55,20 @@ namespace Proyecto1_TBDII
             }
         }
 
+        public void setTotalPreguntas()
+        {
+            setNoClases();
+            int cont = 0;
+            for(int i = 1;i <= noClases; i++)
+            {
+                int j = 1;
+                while (conn.KeyExists("Pregunta:C" + i + "P" + j))
+                {
+                    cont++;
+                }
+            }
+        }
+
         public void setNoPreguntas(int x)
         {
             int i = 1;
@@ -67,11 +81,39 @@ namespace Proyecto1_TBDII
             }
         }
 
+        public void setNoExamenes()
+        {
+            int i = 1;
+            conn = dba.getConn();
+            while (conn.KeyExists("Examen:ExamenC" + i))
+            {
+                noExamenes = i;
+                i++;
+            }
+        }
+
         private void btCrearClase_Click(object sender, RoutedEventArgs e)
         {
             setNoClases();
             CrearClase cc = new CrearClase(noClases, this);
             cc.Show();
+        }
+
+        private void btCrearPregunta_Click(object sender, RoutedEventArgs e)
+        {
+            int index = dgAdmin.SelectedIndex;
+            if (index > -1)
+            {
+                DataGridRow row = dgAdmin.ItemContainerGenerator.ContainerFromIndex(index) as DataGridRow;
+                InfoAdmin info = (InfoAdmin)dgAdmin.ItemContainerGenerator.ItemFromContainer(row);
+                setTotalPreguntas();
+                CrearPregunta cp = new CrearPregunta(info.idClase, info.noPreguntas, totPreguntas, this);
+                cp.Show();
+            }
+            else
+            {
+                MessageBox.Show("Debe seleccionar una clase para crear una pregunta.");
+            }
         }
 
         private void btCrearExamen_Click(object sender, RoutedEventArgs e)
@@ -80,7 +122,17 @@ namespace Proyecto1_TBDII
             if (index > -1)
             {
                 DataGridRow row = dgAdmin.ItemContainerGenerator.ContainerFromIndex(index) as DataGridRow;
-                var info = dgAdmin.ItemContainerGenerator.ItemFromContainer(row);
+                InfoAdmin info =(InfoAdmin)dgAdmin.ItemContainerGenerator.ItemFromContainer(row);
+                if (!info.tieneExamen)
+                {
+                    setNoExamenes();
+                    CrearExamen ce = new CrearExamen(noExamenes,info.idClase,info.noPreguntas, this);
+                    ce.Show();
+                }
+                else
+                {
+                    MessageBox.Show("Ésta clase ya tiene examen.");
+                }
             }
             else
             {
