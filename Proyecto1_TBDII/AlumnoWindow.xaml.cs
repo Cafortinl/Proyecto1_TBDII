@@ -9,6 +9,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using StackExchange.Redis;
 
 namespace Proyecto1_TBDII
 {
@@ -18,10 +19,83 @@ namespace Proyecto1_TBDII
     public partial class AlumnoWindow : Window
     {
         int id = -1;
+        DBA dba = new DBA("127.0.0.1:6379,password=1");
+        IDatabase conn;
+
+        struct Realizados
+        {
+            public string clase { get; set; }
+            public int nota { get; set; }
+
+            public Realizados(string c, int n)
+            {
+                clase = c;
+                nota = n;
+            }
+        }
+
+        struct porRealizar
+        {
+            public int id { get; set; }
+            public string clase { get; set; }
+            public int noPreguntas { get; set; }
+
+            public porRealizar(int i,string c, int p)
+            {
+                id = i;
+                clase = c;
+                noPreguntas = p;
+            }
+        }
+
         public AlumnoWindow(int x)
         {
+            conn = dba.getConn();
             id = x;
             InitializeComponent();
+            lbNombre.Content = "Bienvenido, " + conn.HashGet("Alumno:Alumno"+id, "nombre");
+            updateTables();
+        }
+
+        public void updateTables()
+        {
+            List<Realizados> r = new List<Realizados>();
+            List<porRealizar> p = new List<porRealizar>();
+            List<int> realizados = new List<int>();
+            conn = dba.getConn();
+            int i = 1;
+            while (conn.KeyExists("Clase:Clase"+i))
+            {
+                if(conn.KeyExists("Resultado:A" + id + "C" + i))
+                {
+                    r.Add(new Realizados(conn.HashGet("Resultado:A" + id + "C" + i, "nombreClase"), Convert.ToInt32(conn.HashGet("Resultado:A" + id + "C" + i, "nota"))));
+                    realizados.Add(i);
+                }
+                if (!realizados.Contains(i))
+                {
+                    if(conn.KeyExists("Examen:ExamenC" + i))
+                        p.Add(new porRealizar(i,conn.HashGet("Clase:Clase"+i,"nombre"), Convert.ToInt32(conn.HashGet("Examen:ExamenC"+i, "noPreguntas"))));
+                }
+                i++;
+            }
+            dgRealizados.ItemsSource = r;
+            dgPorRealizar.ItemsSource = p;
+        }
+
+        private void btHacerExamen_Click(object sender, RoutedEventArgs e)
+        {
+            int index = dgPorRealizar.SelectedIndex;
+            if (index > -1)
+            {
+                DataGridRow row = dgPorRealizar.ItemContainerGenerator.ContainerFromIndex(index) as DataGridRow;
+                porRealizar info = (porRealizar)dgPorRealizar.ItemContainerGenerator.ItemFromContainer(row);
+                HacerExamen he = new HacerExamen(info.id,id);
+                he.Show();
+            }
+            else
+            {
+                MessageBox.Show("Debe seleccionar una clase para realizar un examen.");
+            }
         }
     }
 }
