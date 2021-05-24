@@ -28,7 +28,7 @@ namespace Proyecto1_TBDII
             conn = dba.getConn();
             string titulo = tbTitulo.Text;
             string descripcion = tbDesc.Text;
-            string resp = Convert.ToString(cbRespuesta.IsEnabled);
+            string resp = Convert.ToString(cbRespuesta.IsChecked);
             conn.HashSet("Pregunta:C"+idClase+"P"+noPregunta, new HashEntry[] { new HashEntry("id", idPregunta), new HashEntry("titulo", titulo), new HashEntry("descripcion", descripcion), new HashEntry("idClase", idClase), new HashEntry("respuesta", resp)});
             aw.updateTable();
             this.Close();

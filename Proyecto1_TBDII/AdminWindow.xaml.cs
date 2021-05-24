@@ -65,8 +65,10 @@ namespace Proyecto1_TBDII
                 while (conn.KeyExists("Pregunta:C" + i + "P" + j))
                 {
                     cont++;
+                    j++;
                 }
             }
+            totPreguntas = cont;
         }
 
         public void setNoPreguntas(int x)
