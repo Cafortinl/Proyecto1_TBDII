@@ -89,7 +89,7 @@ namespace Proyecto1_TBDII
             {
                 DataGridRow row = dgPorRealizar.ItemContainerGenerator.ContainerFromIndex(index) as DataGridRow;
                 porRealizar info = (porRealizar)dgPorRealizar.ItemContainerGenerator.ItemFromContainer(row);
-                HacerExamen he = new HacerExamen(info.id,id);
+                HacerExamen he = new HacerExamen(info.id,id, this);
                 he.Show();
             }
             else

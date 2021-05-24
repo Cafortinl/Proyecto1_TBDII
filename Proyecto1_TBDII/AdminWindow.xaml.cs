@@ -99,6 +99,22 @@ namespace Proyecto1_TBDII
             cc.Show();
         }
 
+        private void btVerPreguntas_Click(object sender, RoutedEventArgs e)
+        {
+            int index = dgAdmin.SelectedIndex;
+            if (index > -1)
+            {
+                DataGridRow row = dgAdmin.ItemContainerGenerator.ContainerFromIndex(index) as DataGridRow;
+                InfoAdmin info = (InfoAdmin)dgAdmin.ItemContainerGenerator.ItemFromContainer(row);
+                VerPreguntas vp = new VerPreguntas(info.idClase);
+                vp.Show();
+            }
+            else
+            {
+                MessageBox.Show("Debe seleccionar una clase para ver sus preguntas.");
+            }
+        }
+
         private void btCrearPregunta_Click(object sender, RoutedEventArgs e)
         {
             int index = dgAdmin.SelectedIndex;

@@ -1,0 +1,14 @@
+﻿<Window x:Class="Proyecto1_TBDII.VerPreguntas"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Proyecto1_TBDII"
+        mc:Ignorable="d"
+        Title="Ver Preguntas" Height="358" Width="641">
+    <Grid>
+        <Label x:Name="lbClase" Content="Clase: nombreClase" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
+        <DataGrid x:Name="dgPreguntas" Margin="10,36,10,29"/>
+
+    </Grid>
+</Window>

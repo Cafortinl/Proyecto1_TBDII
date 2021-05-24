@@ -11,6 +11,7 @@
         <Button x:Name="btCrearClase" Content="Crear clase" HorizontalAlignment="Left" Margin="679,79,0,0" VerticalAlignment="Top" Width="84" Click="btCrearClase_Click"/>
         <Button x:Name="btCrearExamen" Content="Crear exámen" HorizontalAlignment="Left" Margin="679,129,0,0" VerticalAlignment="Top" Width="84" Click="btCrearExamen_Click"/>
         <Button x:Name="btCrearPregunta" Content="Crear pregunta" HorizontalAlignment="Left" Margin="679,179,0,0" VerticalAlignment="Top" Click="btCrearPregunta_Click"/>
+        <Button x:Name="btVerPreguntas" Content="Ver preguntas" HorizontalAlignment="Left" Margin="679,228,0,0" VerticalAlignment="Top" Width="84" Click="btVerPreguntas_Click"/>
 
     </Grid>
 </Window>
