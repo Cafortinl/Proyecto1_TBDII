@@ -97,5 +97,10 @@ namespace Proyecto1_TBDII
                 MessageBox.Show("Debe seleccionar una clase para realizar un examen.");
             }
         }
+
+        private void btResultados_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

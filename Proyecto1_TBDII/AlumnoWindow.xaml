@@ -9,7 +9,7 @@
     <Grid>
         <Label x:Name="lbNombre" Content="Bienvenido, nombre_alumno" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
         <Label Content="Exámenes realizados" HorizontalAlignment="Left" Margin="10,56,0,0" VerticalAlignment="Top"/>
-        <DataGrid x:Name="dgRealizados" Margin="10,87,375,20" RenderTransformOrigin="0.5,0.5">
+        <DataGrid x:Name="dgRealizados" Margin="10,87,375,80" RenderTransformOrigin="0.5,0.5">
             <DataGrid.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform/>
@@ -22,6 +22,7 @@
         <Label Content="Exámenes por hacer" HorizontalAlignment="Left" Margin="314,56,0,0" VerticalAlignment="Top"/>
         <DataGrid x:Name="dgPorRealizar" Margin="314,82,10,80"/>
         <Button x:Name="btHacerExamen" Content="Hacer exámen" HorizontalAlignment="Left" Margin="426,418,0,0" VerticalAlignment="Top" Click="btHacerExamen_Click"/>
+        <Button x:Name="btResultados" Content="Ver respuestas" HorizontalAlignment="Left" Margin="91,418,0,0" VerticalAlignment="Top" Click="btResultados_Click"/>
 
     </Grid>
 </Window>
