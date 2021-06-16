@@ -21,18 +21,22 @@ namespace Proyecto1_TBDII
         DBA dba = new DBA("127.0.0.1:6379,password=1");
         IDatabase conn;
         int id = -1, cont = 1, noPreguntas = -1, correctas = 0, idAlumno = -1;
+        string respOrder = "";
         AlumnoWindow aw;
 
         private void btEnviar_Click(object sender, RoutedEventArgs e)
         {
             conn = dba.getConn();
             bool resp;
-            resp = rbVerdadero.IsPressed;
+            resp = Convert.ToBoolean(rbVerdadero.IsChecked);
+            respOrder += ";" + Convert.ToInt32(resp);
             if (resp == Convert.ToBoolean(conn.HashGet("PreguntaC" + id + "P" + cont, "respuesta")))
                 correctas++;
             if(cont == noPreguntas)
             {
-                conn.HashSet("Resultado:A"+idAlumno+"C"+id, new HashEntry[] { new HashEntry("idClase",id), new HashEntry("nombreClase", conn.HashGet("Clase:Clase"+id, "nombre")), new HashEntry("nota",correctas)});
+                respOrder = respOrder.Substring(1);
+                MessageBox.Show(respOrder);
+                conn.HashSet("Resultado:A"+idAlumno+"C"+id, new HashEntry[] { new HashEntry("idClase",id), new HashEntry("nombreClase", conn.HashGet("Clase:Clase"+id, "nombre")), new HashEntry("nota",correctas), new HashEntry("respOrder", respOrder)});
                 this.Close();
                 aw.updateTables();
             }
