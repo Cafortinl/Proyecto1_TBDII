@@ -6,8 +6,11 @@
         xmlns:local="clr-namespace:Proyecto1_TBDII"
         mc:Ignorable="d"
         Title="Administrador" Height="450" Width="800">
+    <Window.Background>
+        <ImageBrush ImageSource="/background_big.png"/>
+    </Window.Background>
     <Grid>
-        <DataGrid x:Name="dgAdmin" Margin="26,40,155,35"/>
+        <DataGrid x:Name="dgAdmin" Margin="26,40,155,35" Visibility="Visible" Background="#FFF0F0F0"/>
         <Button x:Name="btCrearClase" Content="Crear clase" HorizontalAlignment="Left" Margin="679,79,0,0" VerticalAlignment="Top" Width="84" Click="btCrearClase_Click"/>
         <Button x:Name="btCrearExamen" Content="Crear exámen" HorizontalAlignment="Left" Margin="679,129,0,0" VerticalAlignment="Top" Width="84" Click="btCrearExamen_Click"/>
         <Button x:Name="btCrearPregunta" Content="Crear pregunta" HorizontalAlignment="Left" Margin="679,179,0,0" VerticalAlignment="Top" Click="btCrearPregunta_Click"/>

@@ -6,6 +6,9 @@
         xmlns:local="clr-namespace:Proyecto1_TBDII"
         mc:Ignorable="d"
         Title="Hacer Examen" Height="431" Width="389">
+    <Window.Background>
+        <ImageBrush ImageSource="/background_big.png"/>
+    </Window.Background>
     <Grid>
         <Label Content="Titulo de pregunta" HorizontalAlignment="Left" Margin="10,19,0,0" VerticalAlignment="Top"/>
         <TextBox x:Name="tbTitulo" HorizontalAlignment="Left" Margin="10,45,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>

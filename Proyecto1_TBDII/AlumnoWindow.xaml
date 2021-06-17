@@ -6,6 +6,9 @@
         xmlns:local="clr-namespace:Proyecto1_TBDII"
         mc:Ignorable="d"
         Title="Alumno" Height="495" Width="628">
+    <Window.Background>
+        <ImageBrush ImageSource="/background_big.png"/>
+    </Window.Background>
     <Grid>
         <Label x:Name="lbNombre" Content="Bienvenido, nombre_alumno" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
         <Label Content="Exámenes realizados" HorizontalAlignment="Left" Margin="10,56,0,0" VerticalAlignment="Top"/>

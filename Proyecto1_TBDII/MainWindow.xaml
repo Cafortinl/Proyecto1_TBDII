@@ -6,6 +6,9 @@
         xmlns:local="clr-namespace:Proyecto1_TBDII"
         mc:Ignorable="d"
         Title="Menu" Height="355" Width="270">
+    <Window.Background>
+        <ImageBrush ImageSource="/background_login.jpg"/>
+    </Window.Background>
     <Grid Margin="0,0,0,5">
         <Label Content="Proyecto 1 TBDII" HorizontalAlignment="Center" Margin="0,65,0,0" VerticalAlignment="Top" FontWeight="Bold" FontSize="20"/>
         <Button x:Name="btAdmin" Content="Admin app" HorizontalAlignment="Center" Margin="0,167,0,0" VerticalAlignment="Top" Width="70" Click="btAdmin_Click"/>

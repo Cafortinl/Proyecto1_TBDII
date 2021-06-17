@@ -6,6 +6,9 @@
         xmlns:local="clr-namespace:Proyecto1_TBDII"
         mc:Ignorable="d"
         Title="Ver Preguntas" Height="358" Width="641">
+    <Window.Background>
+        <ImageBrush ImageSource="/background_big.png"/>
+    </Window.Background>
     <Grid>
         <Label x:Name="lbClase" Content="Clase: nombreClase" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
         <DataGrid x:Name="dgPreguntas" Margin="10,36,10,29"/>

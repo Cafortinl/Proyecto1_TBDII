@@ -7,7 +7,21 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="background_big.png" />
+    <None Remove="background_login.jpg" />
+    <None Remove="signin.png" />
+    <None Remove="user.png" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="StackExchange.Redis" Version="2.2.4" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="background_big.png" />
+    <Resource Include="background_login.jpg" />
+    <Resource Include="signin.png" />
+    <Resource Include="user.png" />
   </ItemGroup>
 
 </Project>

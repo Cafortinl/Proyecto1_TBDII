@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Proyecto1_TBDII"
         mc:Ignorable="d"
-        Title="Crear Clase" Height="225" Width="214">
+        Title="Crear Clase" Height="225" Width="214" Background="White">
     <Grid>
         <Label Content="ID" HorizontalAlignment="Left" Margin="47,20,0,0" VerticalAlignment="Top"/>
         <TextBox x:Name="tbId" HorizontalAlignment="Center" Margin="0,51,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>

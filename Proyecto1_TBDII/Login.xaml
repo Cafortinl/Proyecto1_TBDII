@@ -5,14 +5,25 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Proyecto1_TBDII"
         mc:Ignorable="d"
-        Title="Login" Height="297" Width="187">
+        Title="Login" Height="361" Width="248">
+    <Window.Background>
+        <ImageBrush ImageSource="/background_login.jpg"/>
+    </Window.Background>
     <Grid Margin="0,0,0,5">
-        <TextBox x:Name="tbUsuario" HorizontalAlignment="Center" Margin="0,66,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <PasswordBox x:Name="pbPassword" HorizontalAlignment="Center" Margin="0,127,0,0" VerticalAlignment="Top" Width="120"/>
-        <Button x:Name="btLogin" Content="Login" HorizontalAlignment="Center" Margin="0,182,0,0" VerticalAlignment="Top" Click="btLogin_Click" Width="59"/>
-        <Label Content="Usuario" HorizontalAlignment="Left" Margin="34,40,0,0" VerticalAlignment="Top"/>
-        <Label Content="Password" HorizontalAlignment="Left" Margin="34,101,0,0" VerticalAlignment="Top"/>
-        <Button x:Name="btRegistrarse" Content="Registrarse" HorizontalAlignment="Center" Margin="0,222,0,0" VerticalAlignment="Top" Click="btRegistrarse_Click"/>
+        <Grid.Background>
+            <ImageBrush ImageSource="/background_login.jpg"/>
+        </Grid.Background>
+        <TextBox x:Name="tbUsuario" HorizontalAlignment="Center" Margin="0,163,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <PasswordBox x:Name="pbPassword" HorizontalAlignment="Center" VerticalAlignment="Top" Width="120" Margin="0,217,0,0"/>
+        <Button x:Name="btLogin" Content="Login" HorizontalAlignment="Center" Margin="0,256,0,0" VerticalAlignment="Top" Click="btLogin_Click" Width="60" BorderThickness="1,1,1,1"/>
+        <Label Content="Usuario" HorizontalAlignment="Left" Margin="64,132,0,0" VerticalAlignment="Top"/>
+        <Label Content="Password" HorizontalAlignment="Left" Margin="64,186,0,0" VerticalAlignment="Top"/>
+        <Button x:Name="btRegistrarse" Content="Registrarse" HorizontalAlignment="Center" Margin="0,292,0,0" VerticalAlignment="Top" Click="btRegistrarse_Click"/>
+        <Label Content="" HorizontalAlignment="Center" Margin="0,37,0,0" VerticalAlignment="Top" Height="80" Width="120">
+            <Label.Background>
+                <ImageBrush ImageSource="/user.png"/>
+            </Label.Background>
+        </Label>
 
     </Grid>
 </Window>
