@@ -30,12 +30,11 @@ namespace Proyecto1_TBDII
             bool resp;
             resp = Convert.ToBoolean(rbVerdadero.IsChecked);
             respOrder += ";" + Convert.ToInt32(resp);
-            if (resp == Convert.ToBoolean(conn.HashGet("PreguntaC" + id + "P" + cont, "respuesta")))
+            if (resp == Convert.ToBoolean(conn.HashGet("Pregunta:C" + id + "P" + cont, "respuesta")))
                 correctas++;
             if(cont == noPreguntas)
             {
                 respOrder = respOrder.Substring(1);
-                MessageBox.Show(respOrder);
                 conn.HashSet("Resultado:A"+idAlumno+"C"+id, new HashEntry[] { new HashEntry("idClase",id), new HashEntry("nombreClase", conn.HashGet("Clase:Clase"+id, "nombre")), new HashEntry("nota",correctas), new HashEntry("respOrder", respOrder)});
                 this.Close();
                 aw.updateTables();

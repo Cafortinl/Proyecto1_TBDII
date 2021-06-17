@@ -24,11 +24,13 @@ namespace Proyecto1_TBDII
 
         struct Realizados
         {
+            public int idClase { get; set; }
             public string clase { get; set; }
             public int nota { get; set; }
 
-            public Realizados(string c, int n)
+            public Realizados(int i, string c, int n)
             {
+                idClase = i;
                 clase = c;
                 nota = n;
             }
@@ -68,7 +70,7 @@ namespace Proyecto1_TBDII
             {
                 if(conn.KeyExists("Resultado:A" + id + "C" + i))
                 {
-                    r.Add(new Realizados(conn.HashGet("Resultado:A" + id + "C" + i, "nombreClase"), Convert.ToInt32(conn.HashGet("Resultado:A" + id + "C" + i, "nota"))));
+                    r.Add(new Realizados(Convert.ToInt32(conn.HashGet("Resultado:A"+id+"C"+i, "idClase")),conn.HashGet("Resultado:A" + id + "C" + i, "nombreClase"), Convert.ToInt32(conn.HashGet("Resultado:A" + id + "C" + i, "nota"))));
                     realizados.Add(i);
                 }
                 if (!realizados.Contains(i))
@@ -100,7 +102,18 @@ namespace Proyecto1_TBDII
 
         private void btResultados_Click(object sender, RoutedEventArgs e)
         {
-
+            int index = dgRealizados.SelectedIndex;
+            if (index > -1)
+            {
+                DataGridRow row = dgRealizados.ItemContainerGenerator.ContainerFromIndex(index) as DataGridRow;
+                Realizados info = (Realizados)dgRealizados.ItemContainerGenerator.ItemFromContainer(row);
+                VerRespuestas vr = new VerRespuestas(id, info.idClase);
+                vr.Show();
+            }
+            else
+            {
+                MessageBox.Show("Debe seleccionar un examen para ver los resultados.");
+            }
         }
     }
 }
