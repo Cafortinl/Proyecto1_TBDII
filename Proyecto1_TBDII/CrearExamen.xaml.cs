@@ -27,6 +27,7 @@ namespace Proyecto1_TBDII
         {
             conn = dba.getConn();
             int preg = Convert.ToInt32(tbPreguntas.Text);
+            string fecha = ((DateTime)dp_fecha.SelectedDate).ToString("d");
             if(preg > noPreguntas)
             {
                 MessageBox.Show("El examen no puede tener más preguntas que las que tiene la clase.");
@@ -34,7 +35,7 @@ namespace Proyecto1_TBDII
             }
             else
             {
-                conn.HashSet("Examen:E"+noExamen+"C"+idClase, new HashEntry[] { new HashEntry("id", id), new HashEntry("idClase", idClase), new HashEntry("noPreguntas", preg), new HashEntry("noExamen", noExamen)});
+                conn.HashSet("Examen:E"+noExamen+"C"+idClase, new HashEntry[] { new HashEntry("id", id), new HashEntry("idClase", idClase), new HashEntry("noPreguntas", preg), new HashEntry("fecha", fecha),new HashEntry("noExamen", noExamen)});
                 aw.updateTable();
                 this.Close();
             }

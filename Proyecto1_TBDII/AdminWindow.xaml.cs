@@ -34,13 +34,15 @@ namespace Proyecto1_TBDII
             public string nombreClase { get; set; }
             public int noExamenes { get; set; }
             public int noPreguntas { get; set; }
+            public string fecha { get; set; }
 
-            public InfoAdmin(int id, string n, int e, int p)
+            public InfoAdmin(int id, string n, int e, int p, string f)
             {
                 idClase = id;
                 nombreClase = n;
                 noExamenes = e;
                 noPreguntas = p;
+                fecha = f;
             }
         }
 
@@ -165,8 +167,9 @@ namespace Proyecto1_TBDII
                 List<InfoAdmin> ia = new List<InfoAdmin>();
                 for (int i = 1;i <= noClases;i++)
                 {
+                    int nEx = intNoExamenes(i);
                     setNoPreguntas(i);
-                    ia.Add(new InfoAdmin(i,conn.HashGet("Clase:Clase"+i,"nombre"),intNoExamenes(i),noPreguntas));
+                    ia.Add(new InfoAdmin(i,conn.HashGet("Clase:Clase"+i,"nombre"),nEx,noPreguntas,returnFecha(nEx,i)));
                 }
                 dgAdmin.ItemsSource = ia;
                 dgAdmin.IsReadOnly = true;
@@ -182,6 +185,15 @@ namespace Proyecto1_TBDII
                 cont++;
             }
             return cont-1;
+        }
+
+        public string returnFecha(int e, int c)
+        {
+            conn = dba.getConn();
+            if (e > 0)
+                return conn.HashGet("Examen:E" + e + "C" + c, "fecha");
+            else
+                return "";
         }
     }
 }

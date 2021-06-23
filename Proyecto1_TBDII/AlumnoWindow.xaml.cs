@@ -44,13 +44,15 @@ namespace Proyecto1_TBDII
             public string clase { get; set; }
             public int noExamen { get; set; }
             public int noPreguntas { get; set; }
+            public string fecha { get; set; }
 
-            public porRealizar(int i,string c, int e, int p)
+            public porRealizar(int i,string c, int e, int p, string f)
             {
                 id = i;
                 clase = c;
                 noExamen = e;
                 noPreguntas = p;
+                fecha = f;
             }
         }
 
@@ -83,7 +85,7 @@ namespace Proyecto1_TBDII
                     if (!realizados.Contains("Examen:E" + cont + "C" + i))
                     {
                         if (conn.KeyExists("Examen:E" + cont + "C" + i))
-                            p.Add(new porRealizar(i, conn.HashGet("Clase:Clase" + i, "nombre"), cont,Convert.ToInt32(conn.HashGet("Examen:E" + cont + "C" + i, "noPreguntas"))));
+                            p.Add(new porRealizar(i, conn.HashGet("Clase:Clase" + i, "nombre"), cont,Convert.ToInt32(conn.HashGet("Examen:E" + cont + "C" + i, "noPreguntas")), conn.HashGet("Examen:E" + cont + "C" + i, "fecha")));
                     }
                     cont++;
                 }
@@ -124,6 +126,5 @@ namespace Proyecto1_TBDII
                 MessageBox.Show("Debe seleccionar un examen para ver los resultados.");
             }
         }
-
     }
 }
