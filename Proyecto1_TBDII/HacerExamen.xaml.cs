@@ -20,7 +20,7 @@ namespace Proyecto1_TBDII
     {
         DBA dba = new DBA("127.0.0.1:6379,password=1");
         IDatabase conn;
-        int id = -1, cont = 1, noPreguntas = -1, correctas = 0, idAlumno = -1;
+        int id = -1, cont = 1, noPreguntas = -1, correctas = 0, idAlumno = -1, noExamen = -1;
         string respOrder = "";
         AlumnoWindow aw;
 
@@ -35,7 +35,7 @@ namespace Proyecto1_TBDII
             if(cont == noPreguntas)
             {
                 respOrder = respOrder.Substring(1);
-                conn.HashSet("Resultado:A"+idAlumno+"C"+id, new HashEntry[] { new HashEntry("idClase",id), new HashEntry("nombreClase", conn.HashGet("Clase:Clase"+id, "nombre")), new HashEntry("nota",correctas), new HashEntry("respOrder", respOrder)});
+                conn.HashSet("Resultado:A"+idAlumno+"E"+noExamen+"C"+id, new HashEntry[] { new HashEntry("idClase",id), new HashEntry("nombreClase", conn.HashGet("Clase:Clase"+id, "nombre")), new HashEntry("nota",correctas), new HashEntry("respOrder", respOrder)});
                 this.Close();
                 aw.updateTables();
             }
@@ -43,11 +43,12 @@ namespace Proyecto1_TBDII
             setPregunta();
         }
 
-        public HacerExamen(int i, int a, AlumnoWindow ad)
+        public HacerExamen(int i, int a, int e,AlumnoWindow ad)
         {
             id = i;
             idAlumno = a;
             aw = ad;
+            noExamen = e;
             InitializeComponent();
             setInfo();
             setPregunta();
@@ -70,7 +71,7 @@ namespace Proyecto1_TBDII
         public void setInfo()
         {
             conn = dba.getConn();
-            noPreguntas = Convert.ToInt32(conn.HashGet("Examen:ExamenC"+id, "noPreguntas"));
+            noPreguntas = Convert.ToInt32(conn.HashGet("Examen:E" + noExamen + "C"+id, "noPreguntas"));
         }
 
     }

@@ -26,12 +26,14 @@ namespace Proyecto1_TBDII
         {
             public int idClase { get; set; }
             public string clase { get; set; }
+            public int noExamen { get; set; }
             public int nota { get; set; }
 
-            public Realizados(int i, string c, int n)
+            public Realizados(int i, string c, int e, int n)
             {
                 idClase = i;
                 clase = c;
+                noExamen = e;
                 nota = n;
             }
         }
@@ -40,12 +42,14 @@ namespace Proyecto1_TBDII
         {
             public int id { get; set; }
             public string clase { get; set; }
+            public int noExamen { get; set; }
             public int noPreguntas { get; set; }
 
-            public porRealizar(int i,string c, int p)
+            public porRealizar(int i,string c, int e, int p)
             {
                 id = i;
                 clase = c;
+                noExamen = e;
                 noPreguntas = p;
             }
         }
@@ -63,20 +67,25 @@ namespace Proyecto1_TBDII
         {
             List<Realizados> r = new List<Realizados>();
             List<porRealizar> p = new List<porRealizar>();
-            List<int> realizados = new List<int>();
+            List<String> realizados = new List<String>();
             conn = dba.getConn();
             int i = 1;
             while (conn.KeyExists("Clase:Clase"+i))
             {
-                if(conn.KeyExists("Resultado:A" + id + "C" + i))
+                int cont = 1;
+                while (conn.KeyExists("Examen:E" + cont + "C" + i))
                 {
-                    r.Add(new Realizados(Convert.ToInt32(conn.HashGet("Resultado:A"+id+"C"+i, "idClase")),conn.HashGet("Resultado:A" + id + "C" + i, "nombreClase"), Convert.ToInt32(conn.HashGet("Resultado:A" + id + "C" + i, "nota"))));
-                    realizados.Add(i);
-                }
-                if (!realizados.Contains(i))
-                {
-                    if(conn.KeyExists("Examen:ExamenC" + i))
-                        p.Add(new porRealizar(i,conn.HashGet("Clase:Clase"+i,"nombre"), Convert.ToInt32(conn.HashGet("Examen:ExamenC"+i, "noPreguntas"))));
+                    if (conn.KeyExists("Resultado:A" + id + "E" + cont + "C" + i))
+                    {
+                        r.Add(new Realizados(Convert.ToInt32(conn.HashGet("Resultado:A" + id+"E"+cont + "C" + i, "idClase")), conn.HashGet("Resultado:A" + id+"E"+cont + "C" + i, "nombreClase"), cont,Convert.ToInt32(conn.HashGet("Resultado:A" + id+"E"+cont + "C" + i, "nota"))));
+                        realizados.Add("Examen:E" + cont + "C" + i);
+                    }
+                    if (!realizados.Contains("Examen:E" + cont + "C" + i))
+                    {
+                        if (conn.KeyExists("Examen:E" + cont + "C" + i))
+                            p.Add(new porRealizar(i, conn.HashGet("Clase:Clase" + i, "nombre"), cont,Convert.ToInt32(conn.HashGet("Examen:E" + cont + "C" + i, "noPreguntas"))));
+                    }
+                    cont++;
                 }
                 i++;
             }
@@ -91,7 +100,7 @@ namespace Proyecto1_TBDII
             {
                 DataGridRow row = dgPorRealizar.ItemContainerGenerator.ContainerFromIndex(index) as DataGridRow;
                 porRealizar info = (porRealizar)dgPorRealizar.ItemContainerGenerator.ItemFromContainer(row);
-                HacerExamen he = new HacerExamen(info.id,id, this);
+                HacerExamen he = new HacerExamen(info.id,id, info.noExamen,this);
                 he.Show();
             }
             else
@@ -107,7 +116,7 @@ namespace Proyecto1_TBDII
             {
                 DataGridRow row = dgRealizados.ItemContainerGenerator.ContainerFromIndex(index) as DataGridRow;
                 Realizados info = (Realizados)dgRealizados.ItemContainerGenerator.ItemFromContainer(row);
-                VerRespuestas vr = new VerRespuestas(id, info.idClase);
+                VerRespuestas vr = new VerRespuestas(id, info.noExamen,info.idClase);
                 vr.Show();
             }
             else
@@ -115,5 +124,6 @@ namespace Proyecto1_TBDII
                 MessageBox.Show("Debe seleccionar un examen para ver los resultados.");
             }
         }
+
     }
 }

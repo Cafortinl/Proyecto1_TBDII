@@ -32,14 +32,14 @@ namespace Proyecto1_TBDII
         {
             public int idClase { get; set; }
             public string nombreClase { get; set; }
-            public bool tieneExamen { get; set; }
+            public int noExamenes { get; set; }
             public int noPreguntas { get; set; }
 
-            public InfoAdmin(int id, string n, bool e, int p)
+            public InfoAdmin(int id, string n, int e, int p)
             {
                 idClase = id;
                 nombreClase = n;
-                tieneExamen = e;
+                noExamenes = e;
                 noPreguntas = p;
             }
         }
@@ -85,11 +85,16 @@ namespace Proyecto1_TBDII
 
         public void setNoExamenes()
         {
-            int i = 1;
+            int i = 1, cont = 1;
             conn = dba.getConn();
-            while (conn.KeyExists("Examen:ExamenC" + i))
+            while (conn.KeyExists("Clase:Clase" + i))
             {
-                noExamenes = i;
+                int contE = 1;
+                while (conn.KeyExists("Examen:E" + contE + "C" + i))
+                {
+                    noExamenes = cont++;
+                    contE++;
+                }
                 i++;
             }
         }
@@ -141,16 +146,9 @@ namespace Proyecto1_TBDII
             {
                 DataGridRow row = dgAdmin.ItemContainerGenerator.ContainerFromIndex(index) as DataGridRow;
                 InfoAdmin info =(InfoAdmin)dgAdmin.ItemContainerGenerator.ItemFromContainer(row);
-                if (!info.tieneExamen)
-                {
-                    setNoExamenes();
-                    CrearExamen ce = new CrearExamen(noExamenes,info.idClase,info.noPreguntas, this);
-                    ce.Show();
-                }
-                else
-                {
-                    MessageBox.Show("Ésta clase ya tiene examen.");
-                }
+                setNoExamenes();
+                CrearExamen ce = new CrearExamen(noExamenes,info.idClase,info.noPreguntas, this);
+                ce.Show();
             }
             else
             {
@@ -168,11 +166,22 @@ namespace Proyecto1_TBDII
                 for (int i = 1;i <= noClases;i++)
                 {
                     setNoPreguntas(i);
-                    ia.Add(new InfoAdmin(i,conn.HashGet("Clase:Clase"+i,"nombre"),conn.KeyExists("Examen:ExamenC"+i),noPreguntas));
+                    ia.Add(new InfoAdmin(i,conn.HashGet("Clase:Clase"+i,"nombre"),intNoExamenes(i),noPreguntas));
                 }
                 dgAdmin.ItemsSource = ia;
                 dgAdmin.IsReadOnly = true;
             }
+        }
+
+        public int intNoExamenes(int c)
+        {
+            conn = dba.getConn();
+            int cont = 1;
+            while (conn.KeyExists("Examen:E" + cont + "C" + c))
+            {
+                cont++;
+            }
+            return cont-1;
         }
     }
 }

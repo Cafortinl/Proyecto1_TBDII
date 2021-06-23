@@ -19,7 +19,7 @@ namespace Proyecto1_TBDII
     public partial class CrearExamen : Window
     {
         DBA dba = new DBA("127.0.0.1:6379,password=1");
-        int id = -1, idClase = -1, noPreguntas = -1;
+        int id = -1, idClase = -1, noPreguntas = -1, noExamen = -1;
         AdminWindow aw;
         IDatabase conn;
 
@@ -34,7 +34,7 @@ namespace Proyecto1_TBDII
             }
             else
             {
-                conn.HashSet("Examen:ExamenC"+idClase, new HashEntry[] { new HashEntry("id", id), new HashEntry("idClase", idClase), new HashEntry("noPreguntas", preg)});
+                conn.HashSet("Examen:E"+noExamen+"C"+idClase, new HashEntry[] { new HashEntry("id", id), new HashEntry("idClase", idClase), new HashEntry("noPreguntas", preg), new HashEntry("noExamen", noExamen)});
                 aw.updateTable();
                 this.Close();
             }
@@ -46,9 +46,22 @@ namespace Proyecto1_TBDII
             idClase = c;
             noPreguntas = p;
             aw = a;
+            updateNoExamen();
             InitializeComponent();
             tbId.Text = Convert.ToString(id);
             tbClase.Text = Convert.ToString(idClase);
         }
+
+        public void updateNoExamen()
+        {
+            conn = dba.getConn();
+            int cont = 1;
+            while(conn.KeyExists("Examen:E" + cont + "C" + idClase))
+            {
+                cont++;
+            }
+            noExamen = cont;
+        }
+
     }
 }

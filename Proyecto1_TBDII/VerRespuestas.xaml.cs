@@ -20,16 +20,17 @@ namespace Proyecto1_TBDII
     {
         DBA dba = new DBA("127.0.0.1:6379,password=1");
         IDatabase conn;
-        int id, idClase;
+        int id, idClase, noExamen;
         string[] respuestas;
-        public VerRespuestas(int i, int ic)
+        public VerRespuestas(int i, int e,int ic)
         {
             id = i;
             idClase = ic;
+            noExamen = e;
             InitializeComponent();
             conn = dba.getConn();
             lbNombreClase.Content = "Examen de: " + conn.HashGet("Clase:Clase"+idClase, "nombre");
-            respuestas = Convert.ToString(conn.HashGet("Resultado:A" + id + "C" + idClase, "respOrder")).Split(";");
+            respuestas = Convert.ToString(conn.HashGet("Resultado:A" + id+"E"+noExamen + "C" + idClase, "respOrder")).Split(";");
             updateTable();
         }
 
@@ -53,7 +54,7 @@ namespace Proyecto1_TBDII
             conn = dba.getConn();
             int i = 1;
             List<Resultado> res = new List<Resultado>();
-            while(i <= Convert.ToInt32(conn.HashGet("Examen:ExamenC" + idClase, "noPreguntas")))
+            while(i <= Convert.ToInt32(conn.HashGet("Examen:E"+noExamen+"C" + idClase, "noPreguntas")))
             {
                 res.Add(new Resultado(conn.HashGet("Pregunta:C" + idClase + "P" + i, "titulo"), conn.HashGet("Pregunta:C" + idClase + "P" + i, "descripcion"), conn.HashGet("Pregunta:C" + idClase + "P" + i, "respuesta"), Convert.ToString(Convert.ToBoolean(Convert.ToInt32(respuestas[i-1])))));
                 i++;
